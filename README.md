@@ -10,6 +10,6 @@ objective
 
  steps Taken
 
-1. Created the Strapi project:
+1 Created the Strapi project:
 
    npx create-strapi-app@latest my-project --quickstart
