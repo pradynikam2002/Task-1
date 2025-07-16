@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nikam_pradyumnas",
+  "info": {
+    "singularName": "nikam-pradyumna",
+    "pluralName": "nikam-pradyumnas",
+    "displayName": "Nikam Pradyumna"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    }
+  }
+}
