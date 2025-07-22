@@ -1,4 +1,4 @@
-name: CD - Deploy with Terraform
+name: Terraform Deployment
 
 on:
   workflow_dispatch:
@@ -9,22 +9,21 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.5
 
-      - name: Initialize Terraform
-        working-directory: ./terraform-task4
-        run: terraform init
+      - name: Terraform Init
+        run: terraform -chdir=CICD/terraform-task4 init
 
-      - name: Plan Terraform
-        working-directory: ./terraform-task4
-        run: terraform plan
+      - name: Terraform Apply
+        run: terraform -chdir=CICD/terraform-task4 apply -auto-approve
 
-      - name: Apply Terraform
-        working-directory: ./terraform-task4
-        run: terraform apply -auto-approve
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-2
+
