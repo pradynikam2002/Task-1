@@ -1,7 +1,11 @@
 name: Terraform CD
 
 on:
-  workflow_dispatch:  # Manual trigger
+  push:
+    branches:
+      - Pradyumna-Nikam
+    paths:
+      - 'CICD/terraform-task4/**'  # ✅ Only trigger if files in this folder change
 
 jobs:
   deploy:
@@ -34,6 +38,8 @@ jobs:
       - name: Apply Terraform
         run: terraform apply -auto-approve
         working-directory: ./CICD/terraform-task4
+
+
 
 
 
