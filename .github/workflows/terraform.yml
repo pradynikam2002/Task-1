@@ -1,10 +1,7 @@
 name: Terraform CD
 
 on:
-  workflow_dispatch:       # 👈 Allows manual trigger from GitHub UI
-  push:
-    branches:
-      - Pradyumna-Nikam    # Trigger on push to your working branch
+  workflow_dispatch:  # Manual trigger
 
 jobs:
   deploy:
@@ -19,6 +16,13 @@ jobs:
         with:
           terraform_version: 1.8.0
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
       - name: Initialize Terraform
         run: terraform init
         working-directory: ./CICD/terraform-task4
@@ -30,5 +34,7 @@ jobs:
       - name: Apply Terraform
         run: terraform apply -auto-approve
         working-directory: ./CICD/terraform-task4
+
+
 
 
